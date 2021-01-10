@@ -43,7 +43,7 @@ var express_1 = require("express");
 var CreateUserService_1 = __importDefault(require("../services/CreateUserService"));
 var usersRouter = express_1.Router();
 usersRouter.post('/', function (request, response) { return __awaiter(void 0, void 0, void 0, function () {
-    var _a, name, displayName, email, password, createUser, user;
+    var _a, name, displayName, email, password, createUser, user, id, createdAt, updatedAt, userValidated;
     return __generator(this, function (_b) {
         switch (_b.label) {
             case 0:
@@ -57,8 +57,9 @@ usersRouter.post('/', function (request, response) { return __awaiter(void 0, vo
                     })];
             case 1:
                 user = _b.sent();
-                delete user.password;
-                return [2 /*return*/, response.json(user)];
+                id = user.id, createdAt = user.createdAt, updatedAt = user.updatedAt;
+                userValidated = { name: name, displayName: displayName, email: email, id: id, createdAt: createdAt, updatedAt: updatedAt };
+                return [2 /*return*/, response.json(userValidated)];
         }
     });
 }); });

@@ -13,9 +13,20 @@ sessionsRouter.post('/', async (request, response) => {
     password,
   });
 
-  delete user.password;
+  const { name, displayName, id, createdAt, updatedAt } = user;
 
-  return response.json({ user, token });
+  const userValidated = {
+    User: {
+      name,
+      displayName,
+      email,
+      id,
+      createdAt,
+      updatedAt,
+    },
+  };
+
+  return response.json({ userValidated, token });
 });
 
 export default sessionsRouter;

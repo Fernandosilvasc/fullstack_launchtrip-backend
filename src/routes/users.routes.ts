@@ -16,9 +16,11 @@ usersRouter.post('/', async (request, response) => {
     password,
   });
 
-  delete user.password;
+  const { id, createdAt, updatedAt } = user;
 
-  return response.json(user);
+  const userValidated = { name, displayName, email, id, createdAt, updatedAt };
+
+  return response.json(userValidated);
 });
 
 export default usersRouter;

@@ -43,7 +43,7 @@ var express_1 = require("express");
 var AuthenticateUserService_1 = __importDefault(require("../services/AuthenticateUserService"));
 var sessionsRouter = express_1.Router();
 sessionsRouter.post('/', function (request, response) { return __awaiter(void 0, void 0, void 0, function () {
-    var _a, email, password, authenticateUser, _b, user, token;
+    var _a, email, password, authenticateUser, _b, user, token, name, displayName, id, createdAt, updatedAt, userValidated;
     return __generator(this, function (_c) {
         switch (_c.label) {
             case 0:
@@ -55,8 +55,18 @@ sessionsRouter.post('/', function (request, response) { return __awaiter(void 0,
                     })];
             case 1:
                 _b = _c.sent(), user = _b.user, token = _b.token;
-                delete user.password;
-                return [2 /*return*/, response.json({ user: user, token: token })];
+                name = user.name, displayName = user.displayName, id = user.id, createdAt = user.createdAt, updatedAt = user.updatedAt;
+                userValidated = {
+                    User: {
+                        name: name,
+                        displayName: displayName,
+                        email: email,
+                        id: id,
+                        createdAt: createdAt,
+                        updatedAt: updatedAt,
+                    },
+                };
+                return [2 /*return*/, response.json({ userValidated: userValidated, token: token })];
         }
     });
 }); });
